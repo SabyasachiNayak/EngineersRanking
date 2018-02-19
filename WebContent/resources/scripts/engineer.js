@@ -90,7 +90,7 @@ function showCertification() {
 	function register() {
 		var formData = {
 	    		name : $("#name").val(),
-	    		email : $("#emailId").val(),
+	    		email : $("#mailId").val(),
 	    		password: $("#passwrd").val()
 	    	};
 		if(formData.name != "" && formData.email != "" && formData.password != "")
@@ -202,6 +202,7 @@ function showCertification() {
 		    async: true,
 		    success: function(result) {
 		    	console.log('record added successfully.');
+		    	sessionStorage.setItem("saveBtn", "clicked");
 		    	document.getElementById('userProfileModal').style.display='block';
 		    	addScore();
 		    },
@@ -213,6 +214,7 @@ function showCertification() {
 	function getProfile() {
 		var id = sessionStorage.getItem("id");
 		var email = sessionStorage.getItem("email");
+				
 		if(id == '' || id == null)
 		{
 			 $.ajax({
@@ -255,7 +257,7 @@ function showCertification() {
 				        	{
 				        		document.getElementById('certificationDiv').style.display = "block";
 				        	}
-				      				        	
+				      				      	
 				        	$("#name").val(result.name);
 				    		$("#emailId").val(result.emailId);
 				    		$("#highestEducation").val(result.highestEducation);
@@ -521,7 +523,7 @@ function showCertification() {
 		        success: function(result) {
 		        	window.location.replace("../engineer/welcome");
 		        	var name = document.getElementById('name').value;
-		        	var email = document.getElementById('emailId').value;
+		        	var email = document.getElementById('mailId').value;
 		        	sessionStorage.setItem('name',name);
 		        	sessionStorage.setItem('email',email);
 		        },
@@ -537,8 +539,15 @@ function showCertification() {
 	}
 	
 	function editProfile() {
+		if(document.getElementById('emailId').value != "" && sessionStorage.getItem("saveBtn") == "clicked")
+		{			
+			document.getElementById('btnSave').style.display='none'; 
+			document.getElementById('btnUpdate').style.display='block'; 
+		}
+		
 		$("#userFieldset").prop('disabled', false);
-		document.getElementById('btnUpdate').style.display='block'; 
+		$("#name").val(sessionStorage.getItem('name'));
+		$("#emailId").val(sessionStorage.getItem('email'));		
 	}
 	
 	function cancelProfile() {
