@@ -1,5 +1,7 @@
 package com.er.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +25,11 @@ public class EngineerScoreServiceImpl implements EngineerScoreService {
     @Override
     public EngineerScore get(int id) {
        return engineerPointDAO.get(id);
+    }
+    
+    @Override 
+    public List<EngineerScore> list() {
+       return engineerPointDAO.list();
     }
     
     @Transactional

@@ -38,7 +38,7 @@ public class EngineerDAOImpl implements EngineerDAO {
        engr.setCertificationType(engineer.getCertificationType());
        engr.setCollege(engineer.getCollege());
        engr.setCompanyName(engineer.getCompanyName());
-       engr.setCompetitionLink(engineer.getCompetitionLink());
+       engr.setHackathonLink(engineer.getHackathonLink());
        engr.setGithubLink(engineer.getGithubLink());
        engr.setHighestEducation(engineer.getHighestEducation());
        engr.setLinkedInUrl(engineer.getLinkedInUrl());
@@ -51,7 +51,7 @@ public class EngineerDAOImpl implements EngineerDAO {
        engr.setPatentsNumber(engineer.getPatentsNumber());
        engr.setPrimarySkill(engineer.getPrimarySkill());
        engr.setPrimarySkillExperience(engineer.getPrimarySkillExperience());
-       engr.setProgrammingParticipation(engineer.getProgrammingParticipation());
+       engr.setHackathonParticipation(engineer.getHackathonParticipation());
        engr.setRole(engineer.getRole());
        engr.setSecondarySkill(engineer.getSecondarySkill());
        engr.setSecondarySkillExperience(engineer.getSecondarySkillExperience());

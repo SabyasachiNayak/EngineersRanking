@@ -1,5 +1,9 @@
 package com.er.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -108,6 +112,8 @@ public class EngineerController {
 			   eScore.setId(id);
 			   eScore.setName(engineer.getName());
 			   eScore.setScore(score);
+			   eScore.setCompanyName(engineer.getCompanyName());
+			   eScore.setSkill(engineer.getPrimarySkill());
 			   engScoreService.save(eScore);
 			   
 			   sm.setStatus("Success");
@@ -128,11 +134,28 @@ public class EngineerController {
 	   return new ResponseEntity<StatusMessage>(sm, HttpStatus.OK);
 	}
    
+   @RequestMapping(value = "/listEngineerScore", method = RequestMethod.GET,produces="application/json")
+   public @ResponseBody List<EngineerScore> listTotalScore()
+   {   
+	   List<EngineerScore> scoreList = engScoreService.list();
+       return scoreList;
+   }
+   
    //Update a Engineer Point by id
-   @RequestMapping(value = "/updateEngineerPoint/{id}", method = RequestMethod.PUT,produces="application/json")
-   public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody EngineerScore engPoint) {
-	  engScoreService.update(id, engPoint);
-      return new ResponseEntity<EngineerScore>(engPoint,HttpStatus.OK);
+   @RequestMapping(value = "/updateEngineerScore/{id}", method = RequestMethod.PUT,produces="application/json")
+   public ResponseEntity<?> update(@PathVariable("id") int id) {
+	   Engineer engineer = engineerService.getEngineerById(id);
+	   EngineerScore eScore = new EngineerScore();
+	   if(engineer != null)
+	   {
+		   int score = RankingAlgorithm.getScore(id,engineer);   
+		   eScore = engScoreService.get(id);
+		   eScore.setScore(score);
+		   eScore.setCompanyName(engineer.getCompanyName());
+		   eScore.setSkill(engineer.getPrimarySkill());
+		   engScoreService.update(id, eScore);
+	   }
+       return new ResponseEntity<EngineerScore>(eScore,HttpStatus.OK);
    }
 
    //Delete a Engineer Point by id

@@ -21,6 +21,12 @@ public class EngineerScore {
 	@Column(name="score")
     private int score;
 	
+	@Column(name="company")
+    private String companyName;
+	
+	@Column(name="skill")
+    private String skill;
+	
 	@Column(name="lastModified")
     private Date lastModified;
 
@@ -43,6 +49,22 @@ public class EngineerScore {
 
 	public int getScore() {
 		return score;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getSkill() {
+		return skill;
+	}
+
+	public void setSkill(String skill) {
+		this.skill = skill;
 	}
 
 	public void setScore(int score) {

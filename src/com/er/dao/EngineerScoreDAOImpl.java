@@ -1,11 +1,17 @@
 package com.er.dao;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.er.model.EngineerScore;
+import com.er.model.User;
 
 @Repository
 public class EngineerScoreDAOImpl implements EngineerScoreDAO {
@@ -29,11 +35,28 @@ public class EngineerScoreDAOImpl implements EngineerScoreDAO {
     }
     
     @Override
-    public void update(int id, EngineerScore engPoint) {
+    public List<EngineerScore> list() {
+    	String sqlQuery = "select * from engineer_score order by score desc limit 3";
+        Query query = sessionFactory.getCurrentSession().createSQLQuery(sqlQuery).addEntity(EngineerScore.class);
+        List<EngineerScore> esList = new ArrayList<>();
+        List scoreList = query.list();
+        Iterator it = scoreList.iterator();
+        while(it.hasNext())  
+        {
+        	EngineerScore es = (EngineerScore)it.next();
+        	esList.add(es);
+        }
+       return esList;
+    }
+    
+    @Override
+    public void update(int id, EngineerScore engScore) {
        Session session = sessionFactory.getCurrentSession();
-       EngineerScore ePoint = (EngineerScore) session.byId(EngineerScore.class).load(id);
-       ePoint.setScore(engPoint.getScore());
-       ePoint.setLastModified(engPoint.getLastModified());
+       EngineerScore eScore = (EngineerScore) session.byId(EngineerScore.class).load(id);
+       eScore.setScore(engScore.getScore());
+       eScore.setCompanyName(engScore.getCompanyName());
+       eScore.setSkill(engScore.getSkill());
+       eScore.setLastModified(engScore.getLastModified());
        session.flush();
     }
 

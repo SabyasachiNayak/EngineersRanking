@@ -11,13 +11,13 @@ public class RankingAlgorithm {
 	   {
 		   int point = 0;
 		  
-		   //Company : Tier1->5, Tier2->4,Tier3->3,Others->2
+		   //Company : Tier1->7, Tier2->5,Tier3->4,Others->3
 		   String[] tier1 = {"Facebook", "Amzon", "Google","Apple","Walmart","Intuit"};
-		   String[] tier2 = {"HP", "IBM","Siemens","GE","ABB","Harman","Philips","JPMorgan","CapitalOne","Bank of America","Cloudera","Hortonworks","Qubole"};
+		   String[] tier2 = {"HP","SAP LAB", "IBM","Siemens","GE","ABB","Harman","Philips","JPMorgan","CapitalOne","Bank of America","Cloudera","Hortonworks","Qubole"};
 		   String[] tier3 = {"TCS","Wipro","Infosys","Tech Mahindra","Accenture","IGate","Capgemini"};
 		   
 		   for(String s1: tier1){
-			if(s1.equalsIgnoreCase(engineer.getCompanyName()))
+			if(s1.equalsIgnoreCase(engineer.getCompanyName()) || engineer.getCompanyName().contains(s1))
 			{
 				point = point + 7;	
 			}
@@ -25,7 +25,7 @@ public class RankingAlgorithm {
 		   if(point == 0)
 		   {
 			   for(String s2: tier2){
-				if(s2.equalsIgnoreCase(engineer.getCompanyName()))
+				if(s2.equalsIgnoreCase(engineer.getCompanyName()) || engineer.getCompanyName().contains(s2))
 				{
 					point = point + 5;	
 				}
@@ -35,7 +35,7 @@ public class RankingAlgorithm {
 		   if(point == 0)
 		   {
 			   for(String s3: tier3){
-				if(s3.equalsIgnoreCase(engineer.getCompanyName()))
+				if(s3.equalsIgnoreCase(engineer.getCompanyName()) || engineer.getCompanyName().contains(s3))
 				{
 					point = point + 4;	
 				}
@@ -120,43 +120,56 @@ public class RankingAlgorithm {
 		   }
 			   
 		   //StackOverflow : 5
-		   if(engineer.getStackOverflowUserid() != null)
+		   if(engineer.getStackOverflowUserid() != null || engineer.getStackOverflowUserid() != "")
 		   {
 			   point = point + 5;
 		   }
 		   
 		   //Open Source Contribution : 10
-		   if(engineer.getOpenSourceContribution() != null)
+		   if(engineer.getOpenSourceContribution().equalsIgnoreCase("yes") && (engineer.getOpenSourceCommitLink() != null || engineer.getOpenSourceCommitLink() != ""))
 		   {
 			   point = point + 10;
 		   }
 		   
 		   //Github link and commit : 6
-		   if(engineer.getGithubLink() != null)
+		   if(engineer.getGithubLink() != null || engineer.getGithubLink() != "")
 		   {
 			   point = point + 6;
 		   }
 		   
-		   //Coding Challenge: 8
-		   if(engineer.getProgrammingParticipation() != null)
+		   //Coding Challenge: 6
+		   if(engineer.getHackathonParticipation().equalsIgnoreCase("yes") && (engineer.getHackathonLink() != null || engineer.getHackathonLink() != ""))
 		   {
-			   point = point + 8;
+			   point = point + 6;
 		   }
 		  
 		   //Certifications (Points: No of hot skill certification *2 :: No of regular skill certification * 1)
-		   if(engineer.getCertification() != null)
+		   if(engineer.getCertification().equalsIgnoreCase("yes"))
 		   {
-			   point = point + 5;
+			   if(engineer.getCertificationType().equalsIgnoreCase("Cloud") || engineer.getCertificationType().equalsIgnoreCase("Hadoop"))
+			   {
+				   if(engineer.getCertificationDetails() != null || engineer.getCertificationDetails() != "")
+				   {
+					   point = point + 5;
+				   }
+			   }
+			   else
+			   {
+				   if(engineer.getCertificationDetails() != null || engineer.getCertificationDetails() != "")
+				   {
+					   point = point + 3;
+				   }
+			   }
 		   }
 		   
 		   //Open Source Tool Development : 8
-		   if(engineer.getOpenSourceToolDeveloped() != null)
+		   if(engineer.getOpenSourceToolDeveloped().equalsIgnoreCase("yes") && (engineer.getToolDetails() != null || engineer.getToolDetails() != ""))
 		   {
 			   point = point + 8;
 		   }
 		   
 		   //Linkedin : 3
-		   if(engineer.getLinkedInUrl() != null)
+		   if(engineer.getLinkedInUrl() != null || engineer.getLinkedInUrl() != "")
 		   {
 			   point = point + 3;
 		   }

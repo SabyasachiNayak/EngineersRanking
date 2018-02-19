@@ -73,11 +73,11 @@ public class Engineer {
 	@Column(name="openSourceCommitLink")
     private String openSourceCommitLink;
 	
-	@Column(name="programmingParticipation")
-    private String programmingParticipation;
+	@Column(name="hackathonParticipation")
+    private String hackathonParticipation;
 	
-	@Column(name="competitionLink")
-    private String competitionLink;
+	@Column(name="hackathonLink")
+    private String hackathonLink;
 	
 	@Column(name="certification")
     private String certification;
@@ -262,20 +262,20 @@ public class Engineer {
 		this.openSourceCommitLink = openSourceCommitLink;
 	}
 
-	public String getProgrammingParticipation() {
-		return programmingParticipation;
+	public String getHackathonParticipation() {
+		return hackathonParticipation;
 	}
 
-	public void setProgrammingParticipation(String programmingParticipation) {
-		this.programmingParticipation = programmingParticipation;
+	public void setHackathonParticipation(String hackathonParticipation) {
+		this.hackathonParticipation = hackathonParticipation;
 	}
 
-	public String getCompetitionLink() {
-		return competitionLink;
+	public String getHackathonLink() {
+		return hackathonLink;
 	}
 
-	public void setCompetitionLink(String competitionLink) {
-		this.competitionLink = competitionLink;
+	public void setHackathonLink(String hackathonLink) {
+		this.hackathonLink = hackathonLink;
 	}
 
 	public String getCertification() {

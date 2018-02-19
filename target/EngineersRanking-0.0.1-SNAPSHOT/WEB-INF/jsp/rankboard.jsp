@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title >SW Engineers Ranking</title>
+  <script src="../resources/scripts/jquery.min.js"></script>
+  <script src="../resources/scripts/engineer.js"></script>
+  <link rel="stylesheet" href="../resources/css/style.css">
+</head>
+<body>
+
+<div id="rankContent">
+<br/>
+<label style="font-size:20px;margin-left:30%;">Are you interested to know your professional rank? Click below.</label>
+<br/><br/><br/>
+
+<div align="center">
+<button id="btn" class="button" style="font-size:15px;height:40px;width:200px;margin:auto; display:inline-block;" onclick="getScore();">Get your rank</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<select style="font-size:15px;height:40px;width:200px;margin:auto; display:inline-block;">
+  <option value="bangalore">Bangalore</option>
+  <option value="chennai">Chennai</option>
+  <option value="hyderabad">Hyderabad</option>
+  <option value="pune">Pune</option>
+  <option value="kolkata">Kolkata</option>
+  <option value="delhi">Delhi</option>
+  <option value="all">All location</option>
+</select>
+</div>
+
+<br/><br/>
+<button id="engPoint" class="result" style="font-size:20px;height:40px;width:350px;margin:auto;border-radius:10px;border:1px solid #0084bf;color:navy;display: none"></button>
+<br/><br/>
+ 
+<div align="center">
+<label style="font-size:20px;">Are you interested to know top 3 professionals rank? Click below.</label>
+<br/><br/><br/>
+<button id="btn5" class="button" style="font-size:15px;height:40px;width:200px;margin:auto; display:inline-block;" onclick="showDiv();">Get top 3 Engineers</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<select style="font-size:15px;height:40px;width:200px;margin:auto; display:inline-block;">
+  <option value="bangalore">Bangalore</option>
+  <option value="chennai">Chennai</option>
+  <option value="hyderabad">Hyderabad</option>
+  <option value="pune">Pune</option>
+  <option value="kolkata">Kolkata</option>
+  <option value="delhi">Delhi</option>
+  <option value="all">All location</option>
+</select>
+</div>
+<br/>
+<br/>
+
+<div id="eng5" align="center" style="display:none;" >
+<table style="width:50%">
+  <tr>
+    <th>Name</th>
+    <th>Rank</th> 
+    <th>Skill</th>
+  </tr>
+  <tr>
+    <td>Ranjan</td>
+    <td>1</td> 
+    <td>Hadoop</td>
+  </tr>
+  <tr>
+    <td>Anand</td>
+    <td>2</td> 
+    <td>Hadoop</td>
+  </tr>
+  <tr>
+    <td>Sitansu</td>
+    <td>3</td> 
+    <td>Hadoop</td>
+  </tr>
+ <!--  <tr>
+    <td>Pratap</td>
+    <td>4</td> 
+    <td>Hadoop</td>
+  </tr>
+  <tr>
+    <td>Kumar</td>
+    <td>5</td> 
+    <td>Hadoop</td>
+  </tr> -->
+</table>
+</div>
+
+</div>
+</body>
+
+</html>
+
+

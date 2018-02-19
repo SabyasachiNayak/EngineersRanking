@@ -2,7 +2,6 @@
 <html>
 <head>
   <title >SW Engineers Ranking</title>
- <!--  <link rel="shortcut icon" href=""> -->
   <script src="../resources/scripts/jquery.min.js"></script>
   <script src="../resources/scripts/engineer.js"></script>
   <link rel="stylesheet" href="../resources/css/style.css">
@@ -47,7 +46,7 @@
 	  <label style="font-size:20px;margin-left:2%;">Name:</label> 
 	  <input type="text" id="name" style="font-size:15px;height:40px;width:350px;margin:auto; display:inline-block;" placeholder="Enter your name" required><br/><br/><br/>
 	  <label style="font-size:20px;margin-left:2%;">Email:</label> 
-	  <input type="email" id="emailId" style="font-size:15px;height:40px;width:350px;margin:auto; display:inline-block;" placeholder="Enter your email" required><br/><br/><br/>
+	  <input type="email" id="mailId" style="font-size:15px;height:40px;width:350px;margin:auto; display:inline-block;" placeholder="Enter your email" required><br/><br/><br/>
 	  <label style="font-size:20px;margin-left:-3%;">Password:</label>
 	  <input type="password" id="passwrd" style="margin-right:5%;font-size:15px;height:40px;width:350px;margin:auto;display:inline-block;" placeholder="Enter your password" required><br/>
 	  <br/>
@@ -90,5 +89,6 @@
 </div>   
 </body>
 </html>
+
 
 
