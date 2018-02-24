@@ -1,8 +1,9 @@
 @CHARSET "ISO-8859-1";
 .header {
     background-color: #283e4a;
-    width: 99.6%;
+    /* width: 89em; */
 	padding: 5px;
+	margin: auto;
     /* padding: 1 12px; */
 	}
 	
@@ -106,4 +107,22 @@ table {
 
 .label.thick {
     font-weight: bold;
+}
+
+div.scrollmenu {
+    background-color: #333;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+div.scrollmenu a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+    background-color: #777;
 }

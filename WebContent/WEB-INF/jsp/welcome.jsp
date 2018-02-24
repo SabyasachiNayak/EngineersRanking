@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="../resources/css/style.css">
 </head>
 
-<body>
+<body style="white-space:nowrap;width: 83.8em">
 <div class="header">
-  <h1 align="center" style="color:whitesmoke;padding-left: 2%">
+  <h1 align="center" style="color:whitesmoke;">
   	<a id="userid" ref="#" style="font-size:20px;color:whitesmoke;margin-left:1%"></a>
     <a style="color:whitesmoke;margin-left:10%">Software Engineers Ranking System</a>
     <a href="#" style="font-size:20px;color:whitesmoke;margin-left:2%" onclick="welcome();">Home</a>
@@ -36,9 +36,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
     var name = sessionStorage.getItem("name");
+    var fname = name.split(' ').shift();
     document.getElementById('userName').style.display='block';
-	//document.getElementById('userName').innerHTML='Hey ' + name; 
-	document.getElementById('userid').innerHTML= "Welcome " + name; 
+	document.getElementById('userid').innerHTML= "Welcome " + fname; 
 });
 </script>
 </html>

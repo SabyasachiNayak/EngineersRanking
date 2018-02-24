@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.er.model.EngineerScore;
-import com.er.model.User;
 
 @Repository
 public class EngineerScoreDAOImpl implements EngineerScoreDAO {
@@ -36,7 +35,7 @@ public class EngineerScoreDAOImpl implements EngineerScoreDAO {
     
     @Override
     public List<EngineerScore> list() {
-    	String sqlQuery = "select * from engineer_score order by score desc limit 3";
+    	String sqlQuery = "select * from engineer_score order by score desc limit 5";
         Query query = sessionFactory.getCurrentSession().createSQLQuery(sqlQuery).addEntity(EngineerScore.class);
         List<EngineerScore> esList = new ArrayList<>();
         List scoreList = query.list();

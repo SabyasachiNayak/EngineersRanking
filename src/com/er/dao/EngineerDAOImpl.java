@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.er.model.Engineer;
-import com.er.model.EngineerScore;
 
 @Repository
 public class EngineerDAOImpl implements EngineerDAO {

@@ -1,19 +1,19 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title >SW Engineers Ranking</title>
   <script src="../resources/scripts/jquery.min.js"></script>
   <script src="../resources/scripts/engineer.js"></script>
   <link rel="stylesheet" href="../resources/css/style.css">
 </head>
-<body>
+
+<body style="white-space:nowrap;width:83.8em">
   <div id="userdiv">
   <div align="left" style="font-size:20px;margin-left:5%;">
   <label style="font-size:20px;padding-left:30%">Please fill all your details.</label> 
   <a href="#" style="font-size:20px;color:blue;margin-left:10%" onclick="editProfile();">Edit</a>
   <a href="#" style="font-size:20px;color:blue;margin-left:1%" onclick="cancelProfile();">Cancel</a>
   <br/><br/>
-  <form id="userForm" style="padding-left: 12%;width: 70%">
+  <form id="userForm" style="margin:auto;width: 70%">
 	  <fieldset id="userFieldset" disabled="disabled">
 		  <div id ="content-container">
 			  <div style="padding-left: 24%">

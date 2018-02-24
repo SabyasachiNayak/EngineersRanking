@@ -150,7 +150,8 @@ function showCertification() {
 		    	{
 		    		document.getElementById('wrongPass').style.display='none';
 		    		sessionStorage.setItem("id", result.id);
-		    		sessionStorage.setItem("name", result.name);	
+		    		sessionStorage.setItem("name", result.name);
+		    		sessionStorage.setItem('email',result.email);
 		    		window.location.replace("../engineer/welcome");
 		    	}
 		    	
@@ -539,20 +540,36 @@ function showCertification() {
 	}
 	
 	function editProfile() {
-		if(document.getElementById('emailId').value != "" && sessionStorage.getItem("saveBtn") == "clicked")
+		/*if(document.getElementById('emailId').value != "" && sessionStorage.getItem("saveBtn") == "clicked")
 		{			
 			document.getElementById('btnSave').style.display='none'; 
 			document.getElementById('btnUpdate').style.display='block'; 
+		}*/
+		if(document.getElementById('companyName').value != "")
+		{
+			document.getElementById('btnSave').style.display='none'; 
+			document.getElementById('btnUpdate').style.display='block'; 
 		}
-		
+		else
+		{
+			document.getElementById('btnSave').style.display='block'; 
+			document.getElementById('btnUpdate').style.display='none'; 
+		}
 		$("#userFieldset").prop('disabled', false);
-		$("#name").val(sessionStorage.getItem('name'));
-		$("#emailId").val(sessionStorage.getItem('email'));		
+		if(sessionStorage.getItem('name') != "" && sessionStorage.getItem('name') != null)
+		{
+			$("#name").val(sessionStorage.getItem('name'));
+		}
+		if(sessionStorage.getItem('email') != "" && sessionStorage.getItem('email') != null)
+		{
+			$("#emailId").val(sessionStorage.getItem('email'));
+		}
 	}
 	
 	function cancelProfile() {
 		$("#userFieldset").prop('disabled', true);
 		document.getElementById('btnUpdate').style.display='none';
+		document.getElementById('btnSave').style.display='none'; 
 	}
 	
 	$(document).ready(function(){

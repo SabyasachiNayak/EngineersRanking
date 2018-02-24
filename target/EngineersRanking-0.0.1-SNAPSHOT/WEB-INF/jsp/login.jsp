@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title >SW Engineers Ranking</title>
- <!--  <link rel="shortcut icon" href=""> -->
   <script src="../resources/scripts/jquery.min.js"></script>
   <script src="../resources/scripts/engineer.js"></script>
   <link rel="stylesheet" href="../resources/css/style.css">
 </head>
 
-<body>
+<body style="white-space:nowrap;width:83.8em">
 <div id="loginDivContent">
  <div class="header">
   <h1 align="center" style="color:whitesmoke;padding-right:4%">Software Engineers Ranking System</h1>
@@ -31,14 +29,16 @@
 	  <button id="signUpbtn" class="button" style="font-size:15px;height:40px;width:160px;margin-left:14%; display:inline-block;" onclick="openSignup();">New User Sign Up</button>
 	  &nbsp; &nbsp; &nbsp; &nbsp;
 	  <button id="signInbtn" class="button" style="font-size:15px;height:40px;width:160px;margin-left:auto; display:inline-block;" onclick="signIn();">Sign in</button>
-	  </div>
+  
 	  <br/>
 	  <div id="wrongPass" style="display: none">
 	      <br/> <br/>
 		  <label style="font-size:20px;margin-left:15%;"><font color="red">Wrong User Id or Password.Please try again.</font></label>
  	  </div>
- 	<input style="font-size:20px;margin-left:70%;" class="MyButton" type="button" value="Forgot your password?" onclick="recoverPassword();"/>
-    
+ 	  <br/> <br/>
+ 	<a href="#" style="font-size:22px;margin-left:19%;color: blue;" onclick="recoverPassword();">Forgot your password?</a>
+ 	<!-- <input style="font-size:20px;margin-left:20%;" class="MyButton" type="button" value="Forgot your password?" onclick="recoverPassword();"/> -->
+    </div>
  <!-- Modal- New User Registration -->
  <div id="newUserRegModal" class="modal">
     <div align="center" class="modal-content">
@@ -47,7 +47,7 @@
 	  <label style="font-size:20px;margin-left:2%;">Name:</label> 
 	  <input type="text" id="name" style="font-size:15px;height:40px;width:350px;margin:auto; display:inline-block;" placeholder="Enter your name" required><br/><br/><br/>
 	  <label style="font-size:20px;margin-left:2%;">Email:</label> 
-	  <input type="email" id="emailId" style="font-size:15px;height:40px;width:350px;margin:auto; display:inline-block;" placeholder="Enter your email" required><br/><br/><br/>
+	  <input type="email" id="mailId" style="font-size:15px;height:40px;width:350px;margin:auto; display:inline-block;" placeholder="Enter your email" required><br/><br/><br/>
 	  <label style="font-size:20px;margin-left:-3%;">Password:</label>
 	  <input type="password" id="passwrd" style="margin-right:5%;font-size:15px;height:40px;width:350px;margin:auto;display:inline-block;" placeholder="Enter your password" required><br/>
 	  <br/>
@@ -90,5 +90,6 @@
 </div>   
 </body>
 </html>
+
 
 

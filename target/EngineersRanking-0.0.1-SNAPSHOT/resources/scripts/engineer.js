@@ -36,7 +36,7 @@ function showOpenSource() {
 }
 
 function showParticipation() {
-	   var dropDown = document.getElementById("programmingParticipation");
+	   var dropDown = document.getElementById("hackathonParticipation");
 	   var dropDownVal = dropDown.options[dropDown.selectedIndex].value;
 	   if(dropDownVal == 'yes')
 	   	{
@@ -90,7 +90,7 @@ function showCertification() {
 	function register() {
 		var formData = {
 	    		name : $("#name").val(),
-	    		email : $("#emailId").val(),
+	    		email : $("#mailId").val(),
 	    		password: $("#passwrd").val()
 	    	};
 		if(formData.name != "" && formData.email != "" && formData.password != "")
@@ -150,7 +150,8 @@ function showCertification() {
 		    	{
 		    		document.getElementById('wrongPass').style.display='none';
 		    		sessionStorage.setItem("id", result.id);
-		    		sessionStorage.setItem("name", result.name);	
+		    		sessionStorage.setItem("name", result.name);
+		    		sessionStorage.setItem('email',result.email);
 		    		window.location.replace("../engineer/welcome");
 		    	}
 		    	
@@ -185,8 +186,8 @@ function showCertification() {
 	    		githubLink:$("#githubLink").val(),
 	    		openSourceContribution:$("#openSourceContribution").val(),
 	    		openSourceCommitLink:$("#openSourceCommitLink").val(),
-	    		programmingParticipation:$("#programmingParticipation").val(),
-	    		competitionLink:$("#competitionLink").val(),
+	    		hackathonParticipation:$("#hackathonParticipation").val(),
+	    		hackathonLink:$("#hackathonLink").val(),
 	    		openSourceToolDeveloped:$("#openSourceToolDeveloped").val(),
 	    		toolDetails:$("#toolDetails").val(),
 	    		certification:$("#certification").val(),
@@ -202,7 +203,9 @@ function showCertification() {
 		    async: true,
 		    success: function(result) {
 		    	console.log('record added successfully.');
+		    	sessionStorage.setItem("saveBtn", "clicked");
 		    	document.getElementById('userProfileModal').style.display='block';
+		    	addScore();
 		    },
 		    error: function() {
 		    }
@@ -212,6 +215,7 @@ function showCertification() {
 	function getProfile() {
 		var id = sessionStorage.getItem("id");
 		var email = sessionStorage.getItem("email");
+				
 		if(id == '' || id == null)
 		{
 			 $.ajax({
@@ -247,19 +251,14 @@ function showCertification() {
 				        url:  '../engineer/user',
 				        async: true,
 				        success: function(res) {
-				        	$("#welcomeDivContent").html(res);
-				        	
-				        	document.getElementById("name").disabled = true;
-				        	document.getElementById("emailId").disabled = true;
-				        	
+				        	$("#welcomeDivContent").html(res);		        	
 				        	document.getElementById('btnSave').style.display='none';
-				        	document.getElementById('btnUpdate').style.display='block'; 
 				        	
 				        	if(result.certification == 'yes')
 				        	{
 				        		document.getElementById('certificationDiv').style.display = "block";
 				        	}
-				      				        	
+				      				      	
 				        	$("#name").val(result.name);
 				    		$("#emailId").val(result.emailId);
 				    		$("#highestEducation").val(result.highestEducation);
@@ -280,8 +279,8 @@ function showCertification() {
 				    		$("#githubLink").val(result.githubLink);
 				    		$("#openSourceContribution").val(result.openSourceContribution);
 				    		$("#openSourceCommitLink").val(result.openSourceCommitLink);
-				    		$("#programmingParticipation").val(result.programmingParticipation);
-				    		$("#competitionLink").val(result.competitionLink);
+				    		$("#hackathonParticipation").val(result.hackathonParticipation);
+				    		$("#hackathonLink").val(result.hackathonLink);
 				    		$("#openSourceToolDeveloped").val(result.openSourceToolDeveloped);
 				    		$("#toolDetails").val(result.toolDetails);
 				    		$("#certification").val(result.certification);
@@ -335,8 +334,8 @@ function showCertification() {
 	    		githubLink:$("#githubLink").val(),
 	    		openSourceContribution:$("#openSourceContribution").val(),
 	    		openSourceCommitLink:$("#openSourceCommitLink").val(),
-	    		programmingParticipation:$("#programmingParticipation").val(),
-	    		competitionLink:$("#competitionLink").val(),
+	    		hackathonParticipation:$("#hackathonParticipation").val(),
+	    		hackathonLink:$("#hackathonLink").val(),
 	    		openSourceToolDeveloped:$("#openSourceToolDeveloped").val(),
 	    		toolDetails:$("#toolDetails").val(),
 	    		certification:$("#certification").val(),
@@ -375,13 +374,15 @@ function showCertification() {
 	    		$("#githubLink").val(result.githubLink);
 	    		$("#openSourceContribution").val(result.openSourceContribution);
 	    		$("#openSourceCommitLink").val(result.openSourceCommitLink);
-	    		$("#programmingParticipation").val(result.programmingParticipation);
-	    		$("#competitionLink").val(result.competitionLink);
+	    		$("#hackathonParticipation").val(result.hackathonParticipation);
+	    		$("#hackathonLink").val(result.hackathonLink);
 	    		$("#openSourceToolDeveloped").val(result.openSourceToolDeveloped);
 	    		$("#toolDetails").val(result.toolDetails);
 	    		$("#certification").val(result.certification);
 	    		$("#certificationType").val(result.certificationType);
 	    		$("#certificationDetails").val(result.certificationDetails);
+	    		
+	    		updateScore();
 	        },
 	        error: function() {
 	            console.log("update engineer error");
@@ -398,7 +399,8 @@ function showCertification() {
 	 	        }
 	 	    };
 	}
-	function getScore() {
+	
+	function addScore() {
 		var id = sessionStorage.getItem("id");
 		
 		$.ajax({
@@ -407,10 +409,27 @@ function showCertification() {
         dataType: 'json',
         async: true,
         success: function(result) {
-        	getRank();
+        	console.log('Score calculated');
         },
         error: function() {
-            alert("score error");
+            cosole.log("calculate score error");
+        }
+      });
+    };
+    
+    function updateScore() {
+		var id = sessionStorage.getItem("id");
+		
+		$.ajax({
+        type: 'PUT',
+        url:  '../engineer/updateEngineerScore/' + id,
+        dataType: 'json',
+        async: true,
+        success: function(result) {
+        	console.log('Score updated');
+        },
+        error: function() {
+            console.log("update score error");
         }
       });
     };
@@ -425,13 +444,38 @@ function showCertification() {
         async: true,
         success: function(result) {
            	document.getElementById('engPoint').style.display='block';
-        	document.getElementById("engPoint").innerHTML = "Your Rank in Bangalore is: " + result.score;
+        	document.getElementById("engPoint").innerHTML = "Your Score is: " + result.score;
         },
         error: function() {
             console.log('rank error');
         }
       });
     };
+    
+    function getScoreList() {
+    	  $.ajax({
+    	        type: 'GET',
+    	        url:  '../engineer/listEngineerScore',
+    	        dataType: 'json',
+    	        async: true,
+    	        success: function(result) {
+    	           	document.getElementById('topScoreList').style.display='block';
+    	           
+    	        	$('#scoreTable tr').not(':first').not(':last').remove();
+    	        	var html = '';
+    	        	for(var i = 0; i < result.length; i++)
+    	        	            html += '<tr><td>' + result[i].name + '</td><td>' + result[i].score + '</td><td>'
+    	        	            + result[i].companyName + '</td><td>' + result[i].skill + '</td></tr>';
+    	        	$('#scoreTable tr').first().after(html);
+    	        	
+    	        },
+    	        error: function() {
+    	            console.log('score list error');
+    	        }
+    	      });
+    }
+    
+  
     
 	function recoverPassword() {
 	    document.getElementById('forgotPasswordModal').style.display='block';
@@ -480,7 +524,7 @@ function showCertification() {
 		        success: function(result) {
 		        	window.location.replace("../engineer/welcome");
 		        	var name = document.getElementById('name').value;
-		        	var email = document.getElementById('emailId').value;
+		        	var email = document.getElementById('mailId').value;
 		        	sessionStorage.setItem('name',name);
 		        	sessionStorage.setItem('email',email);
 		        },
@@ -494,5 +538,48 @@ function showCertification() {
 		sessionStorage.clear();
 		window.location.replace("../login/home");
 	}
+	
+	function editProfile() {
+		/*if(document.getElementById('emailId').value != "" && sessionStorage.getItem("saveBtn") == "clicked")
+		{			
+			document.getElementById('btnSave').style.display='none'; 
+			document.getElementById('btnUpdate').style.display='block'; 
+		}*/
+		if(document.getElementById('companyName').value != "")
+		{
+			document.getElementById('btnSave').style.display='none'; 
+			document.getElementById('btnUpdate').style.display='block'; 
+		}
+		else
+		{
+			document.getElementById('btnSave').style.display='block'; 
+			document.getElementById('btnUpdate').style.display='none'; 
+		}
+		$("#userFieldset").prop('disabled', false);
+		if(sessionStorage.getItem('name') != "" && sessionStorage.getItem('name') != null)
+		{
+			$("#name").val(sessionStorage.getItem('name'));
+		}
+		if(sessionStorage.getItem('email') != "" && sessionStorage.getItem('email') != null)
+		{
+			$("#emailId").val(sessionStorage.getItem('email'));
+		}
+	}
+	
+	function cancelProfile() {
+		$("#userFieldset").prop('disabled', true);
+		document.getElementById('btnUpdate').style.display='none';
+		document.getElementById('btnSave').style.display='none'; 
+	}
+	
+	$(document).ready(function(){
+		$("#passwd").keypress(function(e) {
+			if(e.keyCode == 13) {
+			    signIn();
+			}
+		});
+	});
+	
+	
 	
 	

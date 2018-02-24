@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.er.dao.EngineerDAO;
 import com.er.model.Engineer;
-import com.er.model.EngineerScore;
 
 @Service
 public class EngineerServiceImpl implements EngineerService {
