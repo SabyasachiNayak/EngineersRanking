@@ -52,16 +52,16 @@ public class RankingAlgorithm {
 		   {
 			   if(skill.equalsIgnoreCase(engineer.getPrimarySkill()) && engineer.getPrimarySkillExperience() >= 5)
 			   {
-				   point = point + 12;
+				   point = point + 7;
 			   }
 			   else if(skill.equalsIgnoreCase(engineer.getPrimarySkill()) && engineer.getPrimarySkillExperience() >=3 
 					   && engineer.getPrimarySkillExperience() <5)
 			   {
-				   point = point + 10;
+				   point = point + 5;
 			   }
 			   else if(skill.equalsIgnoreCase(engineer.getPrimarySkill()))
 			   {
-				   point = point + 7;
+				   point = point + 3;
 			   }
 		   }
 		   
@@ -125,22 +125,22 @@ public class RankingAlgorithm {
 			   point = point + 5;
 		   }
 		   
-		   //Open Source Contribution : 10
+		   //Open Source Contribution : 5
 		   if(engineer.getOpenSourceContribution().equalsIgnoreCase("yes") && (engineer.getOpenSourceCommitLink() != null || engineer.getOpenSourceCommitLink() != ""))
 		   {
-			   point = point + 10;
+			   point = point + 5;
 		   }
 		   
 		   //Github link and commit : 6
 		   if(engineer.getGithubLink() != null || engineer.getGithubLink() != "")
 		   {
-			   point = point + 6;
+			   point = point + 4;
 		   }
 		   
 		   //Coding Challenge: 6
 		   if(engineer.getHackathonParticipation().equalsIgnoreCase("yes") && (engineer.getHackathonLink() != null || engineer.getHackathonLink() != ""))
 		   {
-			   point = point + 6;
+			   point = point + 4;
 		   }
 		  
 		   //Certifications (Points: No of hot skill certification *2 :: No of regular skill certification * 1)
@@ -171,7 +171,7 @@ public class RankingAlgorithm {
 		   //Linkedin : 3
 		   if(engineer.getLinkedInUrl() != null || engineer.getLinkedInUrl() != "")
 		   {
-			   point = point + 3;
+			   point = point + 2;
 		   }
 		   
 		   return point;
