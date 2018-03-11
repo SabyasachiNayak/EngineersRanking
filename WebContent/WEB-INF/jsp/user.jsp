@@ -267,7 +267,7 @@
   <form class="modal-content">  
     <div align="center">
      <br/>
-     <h2 align="center">Profile details updated successfully.Now you can check your rank.</h2>
+     <h2 align="center">Profile details updated successfully.<br/>Now you can check your rank.</h2>
      <br/>
      <br/>
     <!-- <a href="#" style="font-size:25px;color:blue;" onclick="getRankBoard();">Check Rank</a> -->

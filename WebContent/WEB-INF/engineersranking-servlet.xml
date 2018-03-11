@@ -33,11 +33,11 @@ xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springf
  	<bean id="dataSource"  
 	  class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
 	  <property name="driverClassName" value="com.mysql.jdbc.Driver" />  
-	  <property name="url" value="jdbc:mysql://aa1awkrfv2edq0p.cu1cvetwjwjw.us-east-1.rds.amazonaws.com:3306/ebdb" />
-	  <!-- <property name="url" value="jdbc:mysql://localhost:3306/engineer_db" />  --> 
+	 <!--  <property name="url" value="jdbc:mysql://aa1awkrfv2edq0p.cu1cvetwjwjw.us-east-1.rds.amazonaws.com:3306/ebdb" /> -->
+	  <property name="url" value="jdbc:mysql://localhost:3306/engineer_db" />  
 	  <property name="username" value="root" />  
-	 <!--  <property name="password" value="root" />  -->
-	  <property name="password" value="password" />  
+	  <property name="password" value="root" /> 
+	  <!-- <property name="password" value="password" />   -->
 	 </bean>
  
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
